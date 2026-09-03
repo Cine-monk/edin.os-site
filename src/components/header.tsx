@@ -34,7 +34,7 @@ export function Header() {
 
   return (
     <header className="header-drop sticky top-0 z-50 border-b border-border bg-obsidian/80 backdrop-blur-lg">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="site-bar mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <EdinLogo />
 
         <nav className="hidden h-16 items-center gap-1 lg:flex" aria-label="Primary">

@@ -43,11 +43,11 @@ export function EdinLogo() {
   return (
     <Link
       to="/"
-      className="group -ml-1.5 inline-flex h-16 items-center gap-2.5 text-fg no-underline"
+      className="site-brand group -ml-1.5 inline-flex h-16 items-center gap-2.5 text-fg no-underline"
       aria-label="Edin Labs home"
     >
       <EdinMark className="size-7 shrink-0 text-gold transition-transform duration-200 ease-[var(--ease-out-smooth)] group-hover:scale-[1.04]" />
-      <span className="font-sans text-[15px] font-medium leading-none tracking-[-0.02em] text-fg">
+      <span className="site-wordmark font-sans text-[15px] font-medium leading-none tracking-[-0.02em] text-fg">
         Edin Labs
       </span>
     </Link>

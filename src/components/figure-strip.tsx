@@ -29,7 +29,7 @@ const FIGURES = [
   {
     id: "0.4",
     mark: "Fleets",
-    title: "Moving vehicles",
+    title: "Fleets",
     caption: "Kinetic terrestrial and maritime fleets.",
     src: "/feeds/vehicles.jpg",
   },
