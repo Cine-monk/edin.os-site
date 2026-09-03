@@ -17,7 +17,7 @@ function AboutPage() {
               About Edin Labs.
             </RevealItem>
             <RevealItem as="p" delay={160} className="mt-8 font-serif text-xl leading-relaxed tracking-display text-secondary">
-              Agents will run out of work for humans because they will not have enough guidance. Humans are not meant to stay in the loop around the clock. We free operators from the chat and give machines a callable copy of human taste, so quality can rise for the business, the individual, and the work itself.
+              Agents will run out of work for humans because they will not have enough guidance. Humans are not meant to stay in the loop around the clock. We free operators from the chat and give machines a callable copy of human judgment, so quality can rise for the business, the individual, and the work itself.
             </RevealItem>
             <RevealItem as="p" delay={240} className="mt-6 font-serif text-lg leading-relaxed tracking-display text-secondary">
               Edin Labs is a forward-deployed engineering studio. We capture, analyze, and store your choices at scale, then deploy a judgment emulator over MCP so agents and machines can act with your trust.
