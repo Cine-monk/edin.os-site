@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Reveal, RevealItem } from "@/components/reveal";
 import { ThesisRead } from "@/components/thesis-read";
 import { useSheet } from "@/components/sheet-context";
@@ -6,11 +7,32 @@ import { GAP_COLUMNS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 export function ThesisCards() {
+  const [hot, setHot] = useState<number | null>(null);
+
   return (
     <>
       <ThesisRead />
-      <section className="border-t border-border px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14">
-      <Reveal stagger className="mx-auto mt-0 grid max-w-7xl gap-10 lg:grid-cols-3 lg:gap-0">
+      <section
+        className="relative isolate overflow-hidden border-t border-border px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14"
+        onMouseLeave={() => setHot(null)}
+      >
+        <div
+          className="gap-caustic"
+          data-hot={hot ?? ""}
+          aria-hidden="true"
+        >
+          <video
+            src={hot !== null ? "/caustic-room.mp4" : undefined}
+            poster="/caustic-room.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl">
+      <Reveal stagger className="relative mt-0 grid gap-10 lg:grid-cols-3 lg:gap-0">
         {GAP_COLUMNS.map((column, index) => {
           const isEdin = column.tone === "gold";
           return (
@@ -27,13 +49,15 @@ export function ThesisCards() {
               )}
               data-layer={index}
               tabIndex={0}
+              onMouseEnter={() => setHot(index)}
+              onFocus={() => setHot(index)}
             >
               <p className={cn("section-kicker", isEdin ? "text-gold" : "text-muted")}>
                 // 0{index + 1}
               </p>
               <h3
                 className={cn(
-                  "mt-4 max-w-sm font-serif text-2xl font-normal leading-[1.15] tracking-display sm:text-[1.75rem]",
+                  "mt-4 whitespace-nowrap font-serif text-[1.35rem] font-normal leading-none tracking-display sm:text-[1.5rem] lg:text-[1.55rem]",
                   isEdin ? "text-gold" : "text-fg",
                 )}
               >
@@ -56,6 +80,7 @@ export function ThesisCards() {
           );
         })}
       </Reveal>
+        </div>
       </section>
     </>
   );

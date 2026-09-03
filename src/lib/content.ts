@@ -19,12 +19,10 @@ export const COMPANY_NAV = [
 export const GAP_COLUMNS = [
   {
     id: "public",
-    title: "Current Issue With AI",
+    title: "Current Limitations with AI",
     tone: "muted" as const,
     rows: [
-      "Memory is not the end game.",
-      "A model with facts does not know when to say no.",
-      "Machines have nothing callable to subscribe to your judgement.",
+      "A model with infinite facts does not know when to say no.",
     ],
   },
   {
@@ -32,8 +30,7 @@ export const GAP_COLUMNS = [
     title: "Humans Trapped in the Chat",
     tone: "muted" as const,
     rows: [
-      "Machines outproduce humans but rely on human judgement.",
-      "Chat UIs are not deployment planes with values.",
+      "Machines outproduce humans but rely on our judgement, trapping us in the chat.",
     ],
   },
   {
@@ -41,8 +38,7 @@ export const GAP_COLUMNS = [
     title: "The Future is Digital Exoskeletons",
     tone: "gold" as const,
     rows: [
-      "We offer a judgement emulator over MCP: available to every machine you approve.",
-      "Your judgement timesliced and emulatable at a high degree of accuracy.",
+      "We offer a secure and accurate judgement emulator for your future decisions built on your previous choices.",
     ],
   },
 ] as const;

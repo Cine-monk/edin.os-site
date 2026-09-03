@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Reveal, RevealItem } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
 import { VerdictPlane } from "@/components/verdict-plane";
 import { WordRoll } from "@/components/word-roll";
 import { cn } from "@/lib/utils";
@@ -38,20 +38,6 @@ const FIGURES = [
 export function SystemsBand() {
   return (
     <section className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 sm:pt-14">
-        <Reveal stagger>
-          <RevealItem>
-            <p className="section-kicker">// Systems</p>
-          </RevealItem>
-          <h2 className="mt-6 max-w-4xl font-serif text-3xl font-normal leading-[1.18] tracking-display text-fg sm:text-4xl lg:text-[2.65rem]">
-            <WordRoll
-              text="We capture, analyze, and store your choices at scale, then deploy a judgment emulator so agents and machines can act with your trust."
-              delay={80}
-              step={42}
-            />
-          </h2>
-        </Reveal>
-      </div>
       <VerdictPlane />
     </section>
   );
@@ -61,10 +47,18 @@ export function FigureDrawers() {
   const [active, setActive] = useState(0);
 
   return (
-    <div
-      className="figure-field relative border-t border-border"
-      onMouseLeave={() => setActive(0)}
-    >
+    <section className="border-t border-border">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pb-10 sm:pt-16">
+        <Reveal className="reveal-group">
+          <h2 className="max-w-2xl font-serif text-3xl font-normal leading-[1.12] tracking-display text-fg sm:text-4xl lg:text-[2.75rem]">
+            <WordRoll text="Where we build." delay={40} step={70} />
+          </h2>
+        </Reveal>
+      </div>
+      <div
+        className="figure-field relative"
+        onMouseLeave={() => setActive(0)}
+      >
       {FIGURES.map((figure, index) => (
         <Reveal key={figure.id}>
           <a
@@ -100,6 +94,7 @@ export function FigureDrawers() {
           </a>
         </Reveal>
       ))}
-    </div>
+      </div>
+    </section>
   );
 }

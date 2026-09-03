@@ -7,15 +7,13 @@ export function Hero() {
     <section className="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden">
       <div className="hero-field pointer-events-none absolute inset-0" aria-hidden="true">
         <img src="/hero-splash.jpg" alt="" className="hero-splash" />
-        <div className="hero-current" />
-        <div className="hero-current-fine" />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian/50 via-obsidian/20 to-transparent"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-obsidian/25"
         aria-hidden="true"
       />
       <div className="hero-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true" />

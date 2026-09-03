@@ -18,7 +18,9 @@ npm install
 npm run dev
 ```
 
-## Notes
+## Domain
+
+Production host: `edinlabs.ai` (Cloudflare Pages). Canonical, Open Graph, robots, and sitemap assume that origin.
 
 - Hero fingerprint lives at `public/hero-splash.jpg`
 - Drawer stills live in `public/feeds/`

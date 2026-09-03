@@ -1,78 +1,84 @@
-const PATHS = ["-34%", "-20%", "-8%", "8%", "20%", "34%"] as const;
+"use client";
 
-const JSON_LINES = [
-  `{`,
-  `  "id": "judg_8f3c",`,
-  `  "tool": "send_term_sheet",`,
-  `  "case": "wobbler",`,
-  `  "w": 0.28,`,
-  `  "verdict": "no"`,
-  `}`,
+import { useEffect, useRef, useState } from "react";
+import { PipelineWorld } from "@/components/pipeline-canvas";
+
+const BEATS = [
+  "Ingest",
+  "Analyze",
+  "Emulate",
+  "MCP",
+  "Real-World Decisions",
+  "Judgment Compounds",
 ] as const;
-
-const PORTS = ["verdict", "wobbler", "weight", "scope"] as const;
-
-const AGENTS = [
-  { id: "native", label: "Your agents", badge: "native" },
-  { id: "third", label: "Third-party", badge: "secured" },
-  { id: "machines", label: "Machines", badge: "MCP" },
-] as const;
-
-const BEATS = ["Ingest", "Converge", "Judgment", "Mint JSON", "MCP", "Call"] as const;
 
 export function VerdictPlane() {
-  return (
-    <div id="emulator" className="relative isolate mt-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <p className="font-serif text-xl tracking-display text-fg sm:text-2xl">
-          Data in. Judgment layer at the waypoint. MCP out.
-        </p>
-      </div>
+  const root = useRef<HTMLDivElement>(null);
+  const held = useRef(false);
+  const [beat, setBeat] = useState(0);
 
-      <div className="fly mx-auto mt-8 max-w-7xl">
-        <ol className="fly-beats" aria-hidden="true">
-          {BEATS.map((beat) => (
-            <li key={beat}>{beat}</li>
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    let timer = 0;
+    let visible = false;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    visible = true;
+
+    timer = window.setInterval(() => {
+      if (held.current || !visible) return;
+      setBeat((value) => (value + 1) % BEATS.length);
+    }, 3200);
+
+    return () => {
+      io.disconnect();
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <div ref={root} id="emulator" className="relative isolate pt-12 pb-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <h2 className="max-w-3xl font-serif text-3xl font-normal leading-[1.12] tracking-display text-fg sm:text-4xl">
+          A judgment layer is your key to
+          <br />
+          unlocking real agentic representation.
+        </h2>
+        <ol
+          className="fly-beats is-six"
+          onMouseLeave={() => {
+            held.current = false;
+          }}
+        >
+          {BEATS.map((label, index) => (
+            <li
+              key={label}
+              className={beat === index ? "is-hold" : undefined}
+              onMouseEnter={() => {
+                held.current = true;
+                setBeat(index);
+              }}
+              onClick={() => {
+                held.current = true;
+                setBeat(index);
+              }}
+            >
+              <span>0{index + 1}</span>
+              {label}
+            </li>
           ))}
         </ol>
-
+      </div>
+      <div className="mx-auto mt-6 max-w-7xl">
         <div className="fly-stage">
-          <div className="fly-floor" aria-hidden="true">
-            {PATHS.map((offset) => (
-              <span key={offset} className="fly-path" style={{ left: `calc(50% + ${offset})` }} />
-            ))}
-          </div>
-
-          <div className="fly-waypoint">
-            <span className="fly-waypoint-core" />
-            <p>Judgment layer</p>
-          </div>
-
-          <pre className="fly-json">
-            {JSON_LINES.map((line) => (
-              <span key={line} className="fly-json-line">
-                {line}
-              </span>
-            ))}
-          </pre>
-
-          <div className="fly-mcp" aria-hidden="false">
-            <div className="fly-hub">MCP</div>
-            <ul className="fly-ports">
-              {PORTS.map((port) => (
-                <li key={port}>{port}</li>
-              ))}
-            </ul>
-          </div>
-
-          <ul className="fly-agents">
-            {AGENTS.map((agent) => (
-              <li key={agent.id} className={`fly-agent is-${agent.id}`}>
-                <span>{agent.badge}</span>
-                {agent.label}
-              </li>
-            ))}
-          </ul>
+          <PipelineWorld beat={beat} />
         </div>
       </div>
     </div>
