@@ -58,9 +58,9 @@ export const DEPLOYED_SYSTEMS = [
   {
     id: "02",
     name: "Creator Bay",
-    badge: "Taste Routing",
+    badge: "Judgment Routing",
     problem: "Volume without a veto. Creative machines had no weight for yes or no.",
-    result: "A scoped emulator of house taste, callable at production speed.",
+    result: "A scoped emulator of house judgment, callable at production speed.",
   },
   {
     id: "03",
