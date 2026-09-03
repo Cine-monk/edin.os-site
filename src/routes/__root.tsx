@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Edin Labs builds decision exoskeletons across software and kinetic hardware. Agentic pipelines and operator interfaces engineered to act on your taste.",
+          "Edin Labs builds decision exoskeletons across software and kinetic hardware. Agentic pipelines and operator interfaces engineered to act on your judgment.",
       },
       { name: "theme-color", content: "#0A0D0B" },
     ],
