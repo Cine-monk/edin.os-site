@@ -1,6 +1,7 @@
 "use client";
 
 import { WordRoll } from "@/components/word-roll";
+import "@/pipeline-plates.css";
 
 const PLATES = [
   {

@@ -1,6 +1,7 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import { EdinLogo } from "@/components/logo";
+import "@/pipeline-plates.css";
 import { useSheet } from "@/components/sheet-context";
 import { Button } from "@/components/ui/button";
 import { COMPANY_NAV, NAV_LINKS } from "@/lib/content";
