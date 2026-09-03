@@ -27,7 +27,7 @@ export function Hero() {
           </h1>
           <p className="mt-7 max-w-xl font-serif text-xl leading-[1.25] tracking-display text-fg/70 sm:text-2xl lg:text-[1.75rem]">
             <WordRoll
-              text="Building the digital taste layer for agentic and robotic operations."
+              text="Building the digital judgment layer for agentic and robotic operations."
               delay={1650}
               step={50}
             />
