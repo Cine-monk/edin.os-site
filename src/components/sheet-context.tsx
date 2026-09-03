@@ -48,7 +48,7 @@ export function SheetProvider({ children }: { children: ReactNode }) {
               Start a conversation.
             </h2>
             <p className="mt-3 font-serif text-secondary">
-              Sign up when you are ready to take control of your taste.
+              Sign up when you are ready to take control of your judgment.
             </p>
             <form
               className="mt-10 flex flex-col gap-6"
