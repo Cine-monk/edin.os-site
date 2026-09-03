@@ -1,32 +1,16 @@
 import { Reveal, RevealItem } from "@/components/reveal";
+import { ThesisRead } from "@/components/thesis-read";
 import { useSheet } from "@/components/sheet-context";
 import { Button } from "@/components/ui/button";
-import { WordRoll } from "@/components/word-roll";
 import { GAP_COLUMNS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 export function ThesisCards() {
   return (
-    <section id="thesis" className="scroll-mt-20 border-t border-border px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14">
-      <Reveal stagger className="mx-auto max-w-7xl">
-        <div className="ml-auto max-w-3xl text-right">
-          <RevealItem as="p" className="section-kicker ml-auto">
-            // The Thesis
-          </RevealItem>
-          <h2 className="mt-4 font-serif text-3xl font-normal leading-[1.15] tracking-display text-fg sm:text-4xl lg:text-5xl">
-            <WordRoll
-              text="A model cannot anticipate the hardest decisions you or your company makes."
-              delay={40}
-              step={42}
-            />
-          </h2>
-          <p className="mt-4 font-serif text-2xl font-normal leading-snug tracking-display text-secondary sm:text-3xl">
-            <WordRoll text="We solve that problem." delay={640} step={55} />
-          </p>
-        </div>
-      </Reveal>
-
-      <Reveal stagger className="mx-auto mt-12 grid max-w-7xl gap-10 lg:grid-cols-3 lg:gap-0">
+    <>
+      <ThesisRead />
+      <section className="border-t border-border px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14">
+      <Reveal stagger className="mx-auto mt-0 grid max-w-7xl gap-10 lg:grid-cols-3 lg:gap-0">
         {GAP_COLUMNS.map((column, index) => {
           const isEdin = column.tone === "gold";
           return (
@@ -72,7 +56,8 @@ export function ThesisCards() {
           );
         })}
       </Reveal>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -97,7 +82,7 @@ export function CloseBand() {
             delay={80}
             className="mt-4 max-w-2xl font-serif text-3xl font-normal tracking-display text-fg sm:text-4xl"
           >
-            Start a conversation. Sign up when you are ready to take control of your taste.
+            Start a conversation. Sign up when you are ready to take control of your judgment.
           </RevealItem>
           <RevealItem delay={160} className="mt-8">
             <Button className="rounded-none" onClick={() => sheet.show()}>
