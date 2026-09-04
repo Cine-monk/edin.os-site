@@ -2,15 +2,30 @@ const DEFAULTS = {
   site_title: "Edin Labs | The Judgment Emulator",
   site_description:
     "Edin Labs captures, stores, analyzes, and deploys a company's judgment so agents, robots, and machines can act with their trust.",
+  brand_name: "Edin Labs",
   hero_title: "Decision Exoskeletons.",
   hero_sub: "Building the digital judgment layer for agentic and robotic operations.",
   hero_cta: "Explore Deployed Infrastructure",
   hero_image: "/hero-splash.jpg",
   thesis: "A model cannot anticipate the hardest decisions you or your company makes.",
   thesis_solve: "We solve that problem.",
+  gap_1_title: "Current Limitations with AI",
+  gap_1_body: "A model with infinite facts does not know when to say no.",
+  gap_2_title: "Humans Trapped in the Chat",
+  gap_2_body: "Machines outproduce humans but rely on our judgement, trapping us in the chat.",
+  gap_3_title: "The Future is Digital Exoskeletons",
+  gap_3_body:
+    "We offer a secure and accurate judgement emulator for your future decisions built on your previous choices.",
+  pipeline_title: "A judgment layer is your key to unlocking real agentic representation.",
+  tab_ingest: "Ingest",
+  tab_analyze: "Analyze",
+  tab_emulate: "Emulate",
+  tab_mcp: "Real-World Decisions",
+  tab_compounds: "Judgment Compounds",
   close_kicker: "// Take control",
   close_title: "Sign up to take control of your judgment in the age of AI.",
   close_cta: "Get Started",
+  close_image: "/hero-splash.jpg",
   build_title: "Where we build.",
   mission_kicker: "// Mission",
   mission_title: "One objective.",
@@ -19,7 +34,13 @@ const DEFAULTS = {
     "To free humans from machines by responsibly imbuing AI with human taste and judgment.",
   mission_p3:
     "We see this as a foremost opportunity for the betterment of civilization alongside agentic intelligence.",
-  plate_ingest_hero: "Your Decisions at Scale.",
+  about_kicker: "// Company",
+  about_title: "About Edin Labs.",
+  about_p1:
+    "Agents will run out of work for humans because they will not have enough guidance. Humans are not meant to stay in the loop around the clock. We free operators from the chat and give machines a callable copy of human judgment, so quality can rise for the business, the individual, and the work itself.",
+  about_p2:
+    "Edin Labs is a forward-deployed engineering studio. We capture, analyze, and store your choices at scale, then deploy a judgment emulator over MCP so agents and machines can act with your trust.",
+  plate_ingest_hero: "Your Decisions|at Scale.",
   plate_ingest_gold: "Your Taste Profile",
   plate_analyze_hero: "How we distill your judgments.",
   plate_analyze_lede:
@@ -27,9 +48,9 @@ const DEFAULTS = {
   plate_emulate_hero: "What is an emulator.",
   plate_emulate_lede:
     "A digitized and weighted taste and judgment layer refined from your decisions at scale.",
-  plate_mcp_hero: "Exposed as ports.",
+  plate_mcp_hero: "Exposed|as ports.",
   plate_mcp_gold: "Callable MCP.",
-  plate_compounds_hero: "Judgment compounds.",
+  plate_compounds_hero: "Judgment|compounds.",
   drawer_stacks: "Private agentic and commercial pipelines.",
   drawer_humanoids: "Bipedal operators in human environments.",
   drawer_robots: "Industrial arms and service machines.",
@@ -38,16 +59,35 @@ const DEFAULTS = {
   media_humanoid: "/feeds/humanoid.jpg",
   media_robots: "/feeds/robots.jpg",
   media_fleets: "/feeds/vehicles.jpg",
+  media_ingest_video: "/pipeline/ingest.mp4",
+  media_ingest_poster: "/pipeline/ingest.jpg",
+  media_analyze_video: "/pipeline/analyze.mp4",
+  media_analyze_poster: "/pipeline/analyze.jpg",
+  media_emulate_video: "/pipeline/emulate.mp4",
+  media_emulate_poster: "/pipeline/emulate.jpg",
+  media_mcp_video: "/pipeline/mcp.mp4",
+  media_mcp_poster: "/pipeline/mcp.jpg",
+  media_compounds_video: "/pipeline/compounds.mp4",
+  media_compounds_poster: "/pipeline/compounds.jpg",
+  color_bg: "#0A0D0B",
+  color_fg: "#F3EFE4",
+  color_gold: "#D4AF37",
+  color_emerald: "#1B4D3E",
+  font_url:
+    "https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap",
+  font_serif: '"Hedvig Letters Serif", ui-serif, Georgia, serif',
+  font_sans: "Inter, ui-sans-serif, system-ui, sans-serif",
+  anim_plate_ms: "3200",
+  anim_hero_zoom: "28s",
   css_extra: "",
 };
 
 const GROUPS = {
-  brand: ["site_title", "site_description"],
+  brand: ["site_title", "site_description", "brand_name"],
   hero: ["hero_title", "hero_sub", "hero_cta", "hero_image"],
   thesis: ["thesis", "thesis_solve"],
-  close: ["close_kicker", "close_title", "close_cta"],
-  build: ["build_title"],
-  mission: ["mission_kicker", "mission_title", "mission_p1", "mission_p2", "mission_p3"],
+  gap: ["gap_1_title", "gap_1_body", "gap_2_title", "gap_2_body", "gap_3_title", "gap_3_body"],
+  pipeline: ["pipeline_title", "tab_ingest", "tab_analyze", "tab_emulate", "tab_mcp", "tab_compounds"],
   plates: [
     "plate_ingest_hero",
     "plate_ingest_gold",
@@ -59,16 +99,60 @@ const GROUPS = {
     "plate_mcp_gold",
     "plate_compounds_hero",
   ],
+  close: ["close_kicker", "close_title", "close_cta", "close_image"],
+  build: ["build_title"],
   drawers: ["drawer_stacks", "drawer_humanoids", "drawer_robots", "drawer_fleets"],
-  media: ["media_stack", "media_humanoid", "media_robots", "media_fleets", "hero_image"],
+  mission: ["mission_kicker", "mission_title", "mission_p1", "mission_p2", "mission_p3"],
+  about: ["about_kicker", "about_title", "about_p1", "about_p2"],
+  media: [
+    "hero_image",
+    "close_image",
+    "media_stack",
+    "media_humanoid",
+    "media_robots",
+    "media_fleets",
+    "media_ingest_video",
+    "media_ingest_poster",
+    "media_analyze_video",
+    "media_analyze_poster",
+    "media_emulate_video",
+    "media_emulate_poster",
+    "media_mcp_video",
+    "media_mcp_poster",
+    "media_compounds_video",
+    "media_compounds_poster",
+  ],
+  theme: ["color_bg", "color_fg", "color_gold", "color_emerald", "font_url", "font_serif", "font_sans"],
+  animation: ["anim_plate_ms", "anim_hero_zoom"],
   layout: ["css_extra"],
 };
 
 const HINTS = {
   hero_image: "Site path or https URL.",
-  css_extra: "Raw CSS injected site-wide.",
-  media_stack: "Full-bleed drawer image. Site path or https.",
+  close_image: "Site path or https URL.",
+  css_extra: "Raw CSS injected site-wide. Layout, spacing, animation tweaks.",
+  plate_ingest_hero: "Use | for a line break.",
+  plate_mcp_hero: "Use | for a line break.",
+  plate_compounds_hero: "Use | for a line break.",
+  media_ingest_video: "Plate video. Site path or https.",
+  anim_plate_ms: "Milliseconds between plate beats.",
+  anim_hero_zoom: "CSS duration for the hero Ken Burns, e.g. 28s.",
+  color_bg: "Hex. Maps to --color-obsidian.",
+  font_url: "Google Fonts CSS URL. Pair with font_serif / font_sans.",
 };
+
+const SITE_MAP = [
+  { path: "/", title: "Home", notes: "Hero, thesis, gap, plates, drawers, close" },
+  { path: "/mission", title: "Mission" },
+  { path: "/deployments", title: "Deployments" },
+  { path: "/about", title: "About" },
+  { path: "/intake", title: "Contact" },
+  { path: "/privacy", title: "Privacy" },
+  { path: "/terms", title: "Terms" },
+];
+
+const NOTES =
+  "set_copy(key, value) is live on the next page load. Graphics: hero_image, close_image, media_*, plate posters/videos. Layout: css_extra. Theme: color_bg, color_gold, color_emerald, fonts. Animation: anim_plate_ms, anim_hero_zoom, or css_extra. Plate heroes accept | for a line break. Batch writes: set_copy_many.";
 
 function json(data, status = 200, extra = {}) {
   return new Response(JSON.stringify(data), {
@@ -89,11 +173,11 @@ async function readCopy(env) {
   return { ...DEFAULTS, ...live };
 }
 
-async function writeKey(env, key, value) {
+async function writeCopy(env, patch) {
   const current = await readCopy(env);
-  current[key] = value;
-  if (env.COPY) await env.COPY.put("site", JSON.stringify(current));
-  return current;
+  const next = { ...current, ...patch };
+  if (env.COPY) await env.COPY.put("site", JSON.stringify(next));
+  return next;
 }
 
 function authorized(req, env, write) {
@@ -101,7 +185,7 @@ function authorized(req, env, write) {
   const token = env.MCP_TOKEN;
   if (!token) return true;
   const header = req.headers.get("authorization") || "";
-  return header === `Bearer ${token}`;
+  return header === "Bearer " + token;
 }
 
 const TOOLS = [
@@ -112,7 +196,18 @@ const TOOLS = [
   },
   {
     name: "catalog",
-    description: "Copy keys grouped for text, media, and layout. Use set_copy to write.",
+    description:
+      "Key catalog: groups, hints, and how to change text, graphics, animation, and layout.",
+    inputSchema: { type: "object", properties: {} },
+  },
+  {
+    name: "list_copy_keys",
+    description: "List all keys, grouped catalog, and hints.",
+    inputSchema: { type: "object", properties: {} },
+  },
+  {
+    name: "site_map",
+    description: "List public pages on edinlabs.ai.",
     inputSchema: { type: "object", properties: {} },
   },
   {
@@ -123,11 +218,20 @@ const TOOLS = [
   {
     name: "set_copy",
     description:
-      "Write a copy, media URL, or css_extra key. Live on the next page load. Graphics: hero_image, media_stack, media_humanoid, media_robots, media_fleets. Layout: css_extra.",
+      "Write a copy, media URL, theme, animation, or css_extra key. Live on the next page load.",
     inputSchema: {
       type: "object",
       properties: { key: { type: "string" }, value: { type: "string" } },
       required: ["key", "value"],
+    },
+  },
+  {
+    name: "set_copy_many",
+    description: "Write many keys at once. Pass json as a JSON object string of {key:value}.",
+    inputSchema: {
+      type: "object",
+      properties: { json: { type: "string" } },
+      required: ["json"],
     },
   },
   {
@@ -137,14 +241,17 @@ const TOOLS = [
   },
   {
     name: "get_status",
-    description: "Site health and MCP status.",
+    description: "Site health, Pages project, and MCP status.",
     inputSchema: { type: "object", properties: {} },
   },
 ];
 
 async function callTool(name, args, env) {
   if (name === "ping") return { ok: true, site: "edinlabs.ai" };
-  if (name === "catalog") return { groups: GROUPS, hints: HINTS, keys: Object.keys(DEFAULTS) };
+  if (name === "catalog" || name === "list_copy_keys") {
+    return { groups: GROUPS, hints: HINTS, notes: NOTES, keys: Object.keys(DEFAULTS) };
+  }
+  if (name === "site_map") return { pages: SITE_MAP };
   if (name === "get_copy") {
     const copy = await readCopy(env);
     if (args.key) return { key: args.key, value: copy[args.key] ?? null };
@@ -152,25 +259,38 @@ async function callTool(name, args, env) {
   }
   if (name === "set_copy") {
     if (!args.key) throw new Error("key required");
-    const copy = await writeKey(env, String(args.key), String(args.value ?? ""));
+    const copy = await writeCopy(env, { [String(args.key)]: String(args.value ?? "") });
     return { ok: true, key: args.key, value: copy[args.key] };
+  }
+  if (name === "set_copy_many") {
+    const parsed = JSON.parse(String(args.json || "{}"));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      throw new Error("json must be an object of key:value");
+    }
+    const patch = {};
+    for (const [key, value] of Object.entries(parsed)) patch[key] = String(value ?? "");
+    const copy = await writeCopy(env, patch);
+    return { ok: true, keys: Object.keys(patch), copy };
   }
   if (name === "reset_copy_key") {
     const key = String(args.key || "");
     if (!(key in DEFAULTS)) throw new Error("unknown key");
-    const copy = await writeKey(env, key, DEFAULTS[key]);
+    const copy = await writeCopy(env, { [key]: DEFAULTS[key] });
     return { ok: true, key, value: copy[key] };
   }
   if (name === "get_status") {
     return {
       ok: true,
       site: env.SITE_URL || "https://edinlabs.ai",
+      pages: "edin-labs",
       mcp: "edin-labs-mcp",
       keys: Object.keys(DEFAULTS).length,
     };
   }
-  throw new Error(`unknown tool: ${name}`);
+  throw new Error("unknown tool: " + name);
 }
+
+const WRITE_TOOLS = new Set(["set_copy", "set_copy_many", "reset_copy_key"]);
 
 async function handleRpc(body, env, req) {
   const method = body.method;
@@ -182,7 +302,7 @@ async function handleRpc(body, env, req) {
       result: {
         protocolVersion: "2025-03-26",
         capabilities: { tools: {} },
-        serverInfo: { name: "edin-labs-mcp", version: "1.0.0" },
+        serverInfo: { name: "edin-labs-mcp", version: "1.1.0" },
       },
     };
   }
@@ -193,8 +313,7 @@ async function handleRpc(body, env, req) {
   if (method === "tools/call") {
     const name = body.params?.name;
     const args = body.params?.arguments || {};
-    const write = name === "set_copy" || name === "reset_copy_key";
-    if (!authorized(req, env, write)) {
+    if (!authorized(req, env, WRITE_TOOLS.has(name))) {
       return { jsonrpc: "2.0", id, error: { code: -32001, message: "unauthorized" } };
     }
     try {

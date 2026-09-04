@@ -2,74 +2,77 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { WordRoll } from "@/components/word-roll";
+import { splitCopyLines, useCopy, type CopyMap } from "@/lib/copy";
 
-const PLATES = [
-  {
-    id: "ingest",
-    video: "/pipeline/ingest.mp4",
-    poster: "/pipeline/ingest.jpg",
-    hero: ["Your Decisions", "at Scale."],
-    gold: "Your Taste Profile",
-    layers: null,
-    json: null,
-    lede: null,
-    desk: false,
-    pg: false,
-    place: "ingest",
-  },
-  {
-    id: "analyze",
-    video: "/pipeline/analyze.mp4",
-    poster: "/pipeline/analyze.jpg",
-    hero: ["How we distill your judgments."],
-    gold: null,
-    layers: null,
-    json: null,
-    lede: "We use a combination of weights, microjudgments, time-slicing, recency, and group and individual.",
-    desk: false,
-    pg: false,
-    place: "analyze",
-  },
-  {
-    id: "emulate",
-    video: "/pipeline/emulate.mp4",
-    poster: "/pipeline/emulate.jpg",
-    hero: ["What is an emulator."],
-    gold: null,
-    layers: null,
-    json: null,
-    lede: "A digitized and weighted taste and judgment layer refined from your decisions at scale.",
-    desk: false,
-    pg: false,
-    place: "emulate",
-  },
-  {
-    id: "mcp",
-    video: "/pipeline/mcp.mp4",
-    poster: "/pipeline/mcp.jpg",
-    hero: ["Exposed", "as ports."],
-    gold: "Callable MCP.",
-    layers: null,
-    json: null,
-    lede: null,
-    desk: true,
-    pg: false,
-    place: "mcp",
-  },
-  {
-    id: "compounds",
-    video: "/pipeline/compounds.mp4",
-    poster: "/pipeline/compounds.jpg",
-    hero: ["Judgment", "compounds."],
-    gold: null,
-    layers: null,
-    json: null,
-    lede: null,
-    desk: false,
-    pg: true,
-    place: "compounds",
-  },
-] as const;
+function platesFromCopy(copy: CopyMap) {
+  return [
+    {
+      id: "ingest",
+      video: copy.media_ingest_video,
+      poster: copy.media_ingest_poster,
+      hero: splitCopyLines(copy.plate_ingest_hero),
+      gold: copy.plate_ingest_gold,
+      layers: null as string[] | null,
+      json: null as string | null,
+      lede: null as string | null,
+      desk: false,
+      pg: false,
+      place: "ingest",
+    },
+    {
+      id: "analyze",
+      video: copy.media_analyze_video,
+      poster: copy.media_analyze_poster,
+      hero: splitCopyLines(copy.plate_analyze_hero),
+      gold: null as string | null,
+      layers: null as string[] | null,
+      json: null as string | null,
+      lede: copy.plate_analyze_lede,
+      desk: false,
+      pg: false,
+      place: "analyze",
+    },
+    {
+      id: "emulate",
+      video: copy.media_emulate_video,
+      poster: copy.media_emulate_poster,
+      hero: splitCopyLines(copy.plate_emulate_hero),
+      gold: null as string | null,
+      layers: null as string[] | null,
+      json: null as string | null,
+      lede: copy.plate_emulate_lede,
+      desk: false,
+      pg: false,
+      place: "emulate",
+    },
+    {
+      id: "mcp",
+      video: copy.media_mcp_video,
+      poster: copy.media_mcp_poster,
+      hero: splitCopyLines(copy.plate_mcp_hero),
+      gold: copy.plate_mcp_gold,
+      layers: null as string[] | null,
+      json: null as string | null,
+      lede: null as string | null,
+      desk: true,
+      pg: false,
+      place: "mcp",
+    },
+    {
+      id: "compounds",
+      video: copy.media_compounds_video,
+      poster: copy.media_compounds_poster,
+      hero: splitCopyLines(copy.plate_compounds_hero),
+      gold: null as string | null,
+      layers: null as string[] | null,
+      json: null as string | null,
+      lede: null as string | null,
+      desk: false,
+      pg: true,
+      place: "compounds",
+    },
+  ];
+}
 
 const ASKED = [
   { q: "Trust the vendor?", verdict: "HOLD", note: "weight 0.91 · desk" },
@@ -232,9 +235,12 @@ function PlateVideo({ src, active }: { src: string; active: boolean }) {
 }
 
 export function PipelineWorld({ beat }: { beat: number }) {
+  const copy = useCopy();
+  const plates = platesFromCopy(copy);
+
   return (
     <div className="pipe" data-beat={beat}>
-      {PLATES.map((plate, index) => {
+      {plates.map((plate, index) => {
         const on = beat === index;
         return (
           <figure

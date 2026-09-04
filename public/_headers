@@ -12,3 +12,15 @@
 
 /llms.txt
   Content-Type: text/plain; charset=utf-8
+
+/pipeline/*
+  Cache-Control: public, max-age=86400
+
+/feeds/*
+  Cache-Control: public, max-age=86400
+
+/hero-splash.jpg
+  Cache-Control: public, max-age=86400
+
+/og.jpg
+  Cache-Control: public, max-age=86400

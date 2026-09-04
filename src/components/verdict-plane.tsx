@@ -2,19 +2,29 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PipelineWorld } from "@/components/pipeline-canvas";
-
-const BEATS = [
-  "Ingest",
-  "Analyze",
-  "Emulate",
-  "Real-World Decisions",
-  "Judgment Compounds",
-] as const;
+import { useCopy } from "@/lib/copy";
 
 export function VerdictPlane() {
   const root = useRef<HTMLDivElement>(null);
   const held = useRef(false);
   const [beat, setBeat] = useState(0);
+  const copy = useCopy();
+  const beats = [
+    copy.tab_ingest,
+    copy.tab_analyze,
+    copy.tab_emulate,
+    copy.tab_mcp,
+    copy.tab_compounds,
+  ];
+  const interval = Number.parseInt(copy.anim_plate_ms, 10) || 3200;
+  const title = copy.pipeline_title;
+  const titleBreak = title.replace(
+    "unlocking real agentic representation.",
+    "\nunlocking real agentic representation.",
+  );
+  const [line1, line2] = titleBreak.includes("\n")
+    ? titleBreak.split("\n")
+    : [title, ""];
 
   useEffect(() => {
     const el = root.current;
@@ -32,14 +42,14 @@ export function VerdictPlane() {
 
     timer = window.setInterval(() => {
       if (held.current || !visible) return;
-      setBeat((value) => (value + 1) % BEATS.length);
-    }, 3200);
+      setBeat((value) => (value + 1) % beats.length);
+    }, interval);
 
     return () => {
       io.disconnect();
       window.clearInterval(timer);
     };
-  }, []);
+  }, [beats.length, interval]);
 
   const hold = (index: number) => {
     held.current = true;
@@ -50,9 +60,13 @@ export function VerdictPlane() {
     <div ref={root} id="emulator" className="relative isolate pt-12 pb-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <h2 className="max-w-3xl font-serif text-3xl font-normal leading-[1.12] tracking-display text-fg sm:text-4xl">
-          A judgment layer is your key to
-          <br />
-          unlocking real agentic representation.
+          {line1}
+          {line2 ? (
+            <>
+              <br />
+              {line2}
+            </>
+          ) : null}
         </h2>
         <ol
           className="fly-beats is-five"
@@ -60,7 +74,7 @@ export function VerdictPlane() {
             held.current = false;
           }}
         >
-          {BEATS.map((label, index) => (
+          {beats.map((label, index) => (
             <li
               key={label}
               className={beat === index ? "is-hold" : undefined}

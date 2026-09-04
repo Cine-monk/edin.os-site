@@ -5,7 +5,7 @@ workers_dev = true
 
 [[kv_namespaces]]
 binding = "COPY"
-id = "REPLACE_ME"
+id = "c76f61274a2f4eb59075679e8eb90e0b"
 
 [vars]
 SITE_URL = "https://edinlabs.ai"

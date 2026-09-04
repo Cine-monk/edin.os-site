@@ -4,18 +4,24 @@ import { ThesisRead } from "@/components/thesis-read";
 import { WordRoll } from "@/components/word-roll";
 import { useSheet } from "@/components/sheet-context";
 import { Button } from "@/components/ui/button";
-import { GAP_COLUMNS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { useCopy } from "@/lib/copy";
 
 export function ThesisCards() {
+  const copy = useCopy();
+  const columns = [
+    { id: "public", title: copy.gap_1_title, body: copy.gap_1_body, tone: "muted" as const },
+    { id: "agencies", title: copy.gap_2_title, body: copy.gap_2_body, tone: "muted" as const },
+    { id: "edin", title: copy.gap_3_title, body: copy.gap_3_body, tone: "gold" as const },
+  ];
+
   return (
     <>
       <ThesisRead />
       <section className="gap-band relative isolate px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14">
         <div className="relative mx-auto max-w-7xl">
           <Reveal stagger className="relative mt-0 grid gap-10 lg:grid-cols-3 lg:gap-0">
-            {GAP_COLUMNS.map((column, index) => {
+            {columns.map((column, index) => {
               const isEdin = column.tone === "gold";
               return (
                 <RevealItem
@@ -25,7 +31,7 @@ export function ThesisCards() {
                   className={cn(
                     "gap-pane px-0 py-2 lg:px-10",
                     index === 0 && "lg:pl-0",
-                    index === GAP_COLUMNS.length - 1 && "lg:pr-0",
+                    index === columns.length - 1 && "lg:pr-0",
                     index > 0 && "border-t border-border pt-10 lg:border-t-0 lg:border-l lg:pt-2",
                     isEdin && "is-gold",
                   )}
@@ -44,17 +50,14 @@ export function ThesisCards() {
                     {column.title}
                   </h3>
                   <ul className="mt-8 flex flex-col gap-6">
-                    {column.rows.map((row) => (
-                      <li
-                        key={row}
-                        className={cn(
-                          "font-serif text-base leading-relaxed tracking-display",
-                          isEdin ? "text-fg/90" : "text-secondary",
-                        )}
-                      >
-                        {row}
-                      </li>
-                    ))}
+                    <li
+                      className={cn(
+                        "font-serif text-base leading-relaxed tracking-display",
+                        isEdin ? "text-fg/90" : "text-secondary",
+                      )}
+                    >
+                      {column.body}
+                    </li>
                   </ul>
                 </RevealItem>
               );
@@ -125,7 +128,7 @@ export function CloseBand() {
   return (
     <section ref={ref} className="close-band relative isolate overflow-hidden border-t border-border">
       <div className="close-field pointer-events-none absolute inset-0" aria-hidden="true">
-        <img src="/hero-splash.jpg" alt="" className="close-splash" />
+        <img src={copy.close_image} alt="" className="close-splash" />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian/60 via-obsidian/25 to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
