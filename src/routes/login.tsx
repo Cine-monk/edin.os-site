@@ -3,7 +3,15 @@ import { Reveal, RevealItem } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SiteShell } from "@/components/site-shell";
 
-export const Route = createFileRoute("/login")({ component: LoginPage });
+export const Route = createFileRoute("/login")({
+  component: LoginPage,
+  head: () => ({
+    meta: [
+      { title: "Portal | Edin Labs" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
+});
 
 function LoginPage() {
   return (

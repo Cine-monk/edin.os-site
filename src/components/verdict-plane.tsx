@@ -7,7 +7,6 @@ const BEATS = [
   "Ingest",
   "Analyze",
   "Emulate",
-  "MCP",
   "Real-World Decisions",
   "Judgment Compounds",
 ] as const;
@@ -27,10 +26,9 @@ export function VerdictPlane() {
       ([entry]) => {
         visible = entry.isIntersecting;
       },
-      { threshold: 0.2 },
+      { threshold: 0.12 },
     );
     io.observe(el);
-    visible = true;
 
     timer = window.setInterval(() => {
       if (held.current || !visible) return;
@@ -43,8 +41,13 @@ export function VerdictPlane() {
     };
   }, []);
 
+  const hold = (index: number) => {
+    held.current = true;
+    setBeat(index);
+  };
+
   return (
-    <div ref={root} id="emulator" className="relative isolate pt-12 pb-8">
+    <div ref={root} id="emulator" className="relative isolate pt-12 pb-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <h2 className="max-w-3xl font-serif text-3xl font-normal leading-[1.12] tracking-display text-fg sm:text-4xl">
           A judgment layer is your key to
@@ -52,7 +55,7 @@ export function VerdictPlane() {
           unlocking real agentic representation.
         </h2>
         <ol
-          className="fly-beats is-six"
+          className="fly-beats is-five"
           onMouseLeave={() => {
             held.current = false;
           }}
@@ -61,14 +64,8 @@ export function VerdictPlane() {
             <li
               key={label}
               className={beat === index ? "is-hold" : undefined}
-              onMouseEnter={() => {
-                held.current = true;
-                setBeat(index);
-              }}
-              onClick={() => {
-                held.current = true;
-                setBeat(index);
-              }}
+              onMouseEnter={() => hold(index)}
+              onClick={() => hold(index)}
             >
               <span>0{index + 1}</span>
               {label}
@@ -76,7 +73,7 @@ export function VerdictPlane() {
           ))}
         </ol>
       </div>
-      <div className="mx-auto mt-6 max-w-7xl">
+      <div className="fly-bleed mt-6">
         <div className="fly-stage">
           <PipelineWorld beat={beat} />
         </div>

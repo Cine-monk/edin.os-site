@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DeploymentsRouteImport } from './routes/deployments'
 import { Route as IntakeRouteImport } from './routes/intake'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MissionRouteImport } from './routes/mission'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 
@@ -42,6 +43,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MissionRoute = MissionRouteImport.update({
+  id: '/mission',
+  path: '/mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/deployments': typeof DeploymentsRoute
   '/intake': typeof IntakeRoute
   '/login': typeof LoginRoute
+  '/mission': typeof MissionRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/deployments': typeof DeploymentsRoute
   '/intake': typeof IntakeRoute
   '/login': typeof LoginRoute
+  '/mission': typeof MissionRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/deployments': typeof DeploymentsRoute
   '/intake': typeof IntakeRoute
   '/login': typeof LoginRoute
+  '/mission': typeof MissionRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/deployments'
     | '/intake'
     | '/login'
+    | '/mission'
     | '/privacy'
     | '/terms'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/deployments'
     | '/intake'
     | '/login'
+    | '/mission'
     | '/privacy'
     | '/terms'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/deployments'
     | '/intake'
     | '/login'
+    | '/mission'
     | '/privacy'
     | '/terms'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   DeploymentsRoute: typeof DeploymentsRoute
   IntakeRoute: typeof IntakeRoute
   LoginRoute: typeof LoginRoute
+  MissionRoute: typeof MissionRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mission': {
+      id: '/mission'
+      path: '/mission'
+      fullPath: '/mission'
+      preLoaderRoute: typeof MissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   DeploymentsRoute: DeploymentsRoute,
   IntakeRoute: IntakeRoute,
   LoginRoute: LoginRoute,
+  MissionRoute: MissionRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
 }

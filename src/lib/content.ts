@@ -5,7 +5,7 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 export const NAV_LINKS = [
-  { href: "/#thesis", label: "Mission" },
+  { href: "/mission", label: "Mission" },
   { href: "/deployments", label: "Deployments" },
   { href: "/login", label: "Edin portal" },
 ] as const;

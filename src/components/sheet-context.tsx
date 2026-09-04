@@ -45,10 +45,10 @@ export function SheetProvider({ children }: { children: ReactNode }) {
           >
             <p className="section-kicker">// Get started</p>
             <h2 id={titleId} className="mt-4 font-serif text-3xl tracking-display text-fg">
-              Start a conversation.
+              Get started.
             </h2>
             <p className="mt-3 font-serif text-secondary">
-              Sign up when you are ready to take control of your judgment.
+              Sign up to take control of your judgment in the age of AI.
             </p>
             <form
               className="mt-10 flex flex-col gap-6"

@@ -1,8 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, RevealItem } from "@/components/reveal";
 import { SiteShell } from "@/components/site-shell";
+import { SITE } from "@/lib/site";
 
-export const Route = createFileRoute("/about")({ component: AboutPage });
+export const Route = createFileRoute("/about")({
+  component: AboutPage,
+  head: () => ({
+    meta: [
+      { title: "About | Edin Labs" },
+      {
+        name: "description",
+        content:
+          "Edin Labs is a forward-deployed engineering studio. We deploy a judgment emulator so agents and machines can act with your trust.",
+      },
+      { property: "og:title", content: "About | Edin Labs" },
+      { property: "og:url", content: `${SITE.url}/about` },
+    ],
+    links: [{ rel: "canonical", href: `${SITE.url}/about` }],
+  }),
+});
 
 function AboutPage() {
   return (

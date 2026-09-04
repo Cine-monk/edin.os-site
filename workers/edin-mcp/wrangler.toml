@@ -1,0 +1,11 @@
+name = "edin-labs-mcp"
+main = "worker.js"
+compatibility_date = "2026-04-01"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "COPY"
+id = "REPLACE_ME"
+
+[vars]
+SITE_URL = "https://edinlabs.ai"

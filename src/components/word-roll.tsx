@@ -21,7 +21,7 @@ export function WordRoll({ text, delay = 0, step = 70, className }: WordRollProp
               "--d": `${delay + index * step}ms`,
               display: "inline-block",
               overflow: "hidden",
-              paddingRight: "0.3em",
+              marginRight: "0.28em",
               verticalAlign: "bottom",
             } as CSSProperties
           }

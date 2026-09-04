@@ -45,6 +45,7 @@ export function Reveal({
       if (done) return;
       done = true;
       el.classList.add("is-in");
+      cleanup();
     };
 
     if (immediate) {
@@ -55,35 +56,31 @@ export function Reveal({
     const inBand = () => {
       const rect = el.getBoundingClientRect();
       const vh = viewportHeight();
-      return rect.top < vh * 0.96 && rect.bottom > 8;
+      return rect.top < vh * 0.94 && rect.bottom > 4;
     };
 
     const onScroll = () => {
-      if (inBand()) {
-        show();
-        cleanup();
-      }
+      if (inBand()) show();
     };
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         show();
-        cleanup();
       },
-      { threshold: [0.02, 0.08, 0.16], rootMargin: "0px 0px 8% 0px" },
+      { threshold: 0, rootMargin: "0px 0px 22% 0px" },
     );
     io.observe(el);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("scroll", onScroll, { passive: true, capture: true });
 
-    const fallback = window.setTimeout(show, 2200);
     const start = window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         if (inBand()) show();
       });
     });
+    const fallback = window.setTimeout(show, 6000);
 
     let cleaned = false;
     const cleanup = () => {

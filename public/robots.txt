@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /login
+Disallow: /__grok/
+Disallow: /api/
 
 Sitemap: https://edinlabs.ai/sitemap.xml

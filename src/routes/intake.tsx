@@ -2,8 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, RevealItem } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { SiteShell } from "@/components/site-shell";
+import { SITE } from "@/lib/site";
 
-export const Route = createFileRoute("/intake")({ component: IntakePage });
+export const Route = createFileRoute("/intake")({
+  component: IntakePage,
+  head: () => ({
+    meta: [
+      { title: "Contact | Edin Labs" },
+      {
+        name: "description",
+        content: "Start a conversation with Edin Labs about a judgment emulator for your desk.",
+      },
+      { property: "og:title", content: "Contact | Edin Labs" },
+      { property: "og:url", content: `${SITE.url}/intake` },
+    ],
+    links: [{ rel: "canonical", href: `${SITE.url}/intake` }],
+  }),
+});
 
 function IntakePage() {
   return (

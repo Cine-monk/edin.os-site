@@ -1,27 +1,29 @@
-# Edin Labs (`edinlabs.ai`)
+# Edin Labs
 
-Sovereign intelligence systems. Judgment emulator. Decision exoskeletons.
+Judgment emulator for agentic and robotic operations.
 
-This repo is the source of truth for the marketing site. Do not treat a Grok sandbox as backup.
+Live: [edinlabs.ai](https://edinlabs.ai)
 
 ## Stack
 
-- TanStack Start (Vite) + React 19
-- Tailwind CSS v4
-- Hedvig Letters Serif / Inter / IBM Plex Mono
-- Palette: Obsidian `#0A0D0B`, Emerald `#1B4D3E`, Gold `#D4AF37`
+Vite + React + TanStack Router. Tailwind 4. Cloudflare Pages. Copy MCP at `mcp.edinlabs.ai`.
 
-## Local
+## MCP
 
-```bash
-npm install
-npm run dev
+The site copy, drawer media URLs, and `css_extra` are live-editable:
+
+- `get_copy` / `set_copy` / `catalog` / `reset_copy_key` / `get_status` / `ping`
+- Graphics: `hero_image`, `media_stack`, `media_humanoid`, `media_robots`, `media_fleets`
+- Layout: `css_extra`
+
+Connect `https://mcp.edinlabs.ai` as an MCP server (same pattern as cine-brain). Writes are live on the next page load.
+
+## Deploy
+
+```
+npm run build
+npx wrangler pages deploy dist --project-name edin-labs
+npx wrangler deploy --config workers/edin-mcp/wrangler.toml
 ```
 
-## Domain
-
-Production host: `edinlabs.ai` (Cloudflare Pages). Canonical, Open Graph, robots, and sitemap assume that origin.
-
-- Hero fingerprint lives at `public/hero-splash.jpg`
-- Drawer stills live in `public/feeds/`
-- Site copy and nav: `src/lib/content.ts`
+Canonical domain: `https://edinlabs.ai`.

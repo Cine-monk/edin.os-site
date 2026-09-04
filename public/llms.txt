@@ -1,0 +1,16 @@
+# Edin Labs
+
+> Judgment emulator for agentic and robotic operations.
+
+Edin Labs is a forward-deployed studio. We capture, store, analyze, and deploy a company's judgment so agents, robots, and machines can act with their trust. Memory is not the endgame. A model with facts still does not know when to say yes or no.
+
+## Site
+- [Home](https://edinlabs.ai/): thesis, emulator plates, where we build
+- [Mission](https://edinlabs.ai/mission): one objective
+- [Deployments](https://edinlabs.ai/deployments): deployed infrastructure
+- [About](https://edinlabs.ai/about)
+- [Contact](https://edinlabs.ai/intake)
+
+## Optional
+- [Privacy](https://edinlabs.ai/privacy)
+- [Terms](https://edinlabs.ai/terms)
