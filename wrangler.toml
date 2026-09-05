@@ -4,3 +4,4 @@ pages_build_output_dir = "dist"
 
 [vars]
 SITE_URL = "https://edinlabs.ai"
+VITE_AUTH_ENABLED = "false"

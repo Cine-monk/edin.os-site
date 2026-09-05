@@ -154,14 +154,20 @@ const SITE_MAP = [
 const NOTES =
   "set_copy(key, value) is live on the next page load. Graphics: hero_image, close_image, media_*, plate posters/videos. Layout: css_extra. Theme: color_bg, color_gold, color_emerald, fonts. Animation: anim_plate_ms, anim_hero_zoom, or css_extra. Plate heroes accept | for a line break. Batch writes: set_copy_many.";
 
-function json(data, status = 200, extra = {}) {
+// Public reads may use wildcard CORS. Never pair `*` with write methods
+// (POST / MCP tool calls that mutate copy).
+const READ_CORS = {
+  "access-control-allow-origin": "*",
+  "access-control-allow-headers": "content-type, authorization, mcp-protocol-version",
+  "access-control-allow-methods": "GET, OPTIONS",
+};
+
+function json(data, status = 200, extra = {}, { write = false } = {}) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "access-control-allow-origin": "*",
-      "access-control-allow-headers": "content-type, authorization, mcp-protocol-version",
-      "access-control-allow-methods": "GET, POST, OPTIONS",
+      ...(write ? {} : READ_CORS),
       ...extra,
     },
   });
@@ -336,13 +342,8 @@ async function handleRpc(body, env, req) {
 export default {
   async fetch(req, env) {
     if (req.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "access-control-allow-origin": "*",
-          "access-control-allow-headers": "content-type, authorization, mcp-protocol-version",
-          "access-control-allow-methods": "GET, POST, OPTIONS",
-        },
-      });
+      // Read-only preflight. Do not advertise POST (or any write method) with `*`.
+      return new Response(null, { headers: READ_CORS });
     }
     const url = new URL(req.url);
     if (req.method === "GET" && (url.pathname === "/copy" || url.pathname === "/api/copy")) {
@@ -353,10 +354,10 @@ export default {
     }
     if (req.method === "POST") {
       const body = await req.json().catch(() => null);
-      if (!body) return json({ error: "invalid json" }, 400);
+      if (!body) return json({ error: "invalid json" }, 400, {}, { write: true });
       const reply = await handleRpc(body, env, req);
       if (reply == null) return new Response(null, { status: 204 });
-      return json(reply);
+      return json(reply, 200, {}, { write: true });
     }
     return json({ error: "not found" }, 404);
   },
